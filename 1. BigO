@@ -1,0 +1,48 @@
+Các kiến thức cơ bản cần nắm:
+  1) Time complexity
+  2) Space complexity: Lượng bộ nhớ cần dùng thêm (ngoài input) để giải quyết bài toán.
+  
+Cần nắm chắc thật nằm lòng time complexity  + space complexity của các data structures:
+  1) Hash table
+  2) Binary search
+  3) DFS, BFS
+  4) Heap
+  5) Merge sort, quick sort, heap sort, Dijkstra, Dijkstra heap, Bellman ford, LinkedList, 
+ 
+Thuật toán Bellman ford: Ý tưởng chung là từ 1 đỉnh i nào đó, quét hết các đỉnh j kề cạnh nó, update đường đi đến j nếu có thể ngắn hơn bằng cách đi qua i. Lặp đi 
+lặp lại cho đến khi không còn đỉnh j nào có thể update được nữa thì thôi.
+Có 2 cách implement:
+
+//worse case là O(V * E) nhưng thực ra nó chạy nhanh hơn
+void bellmanford() {
+  bool stop = true;
+  do {
+    stop = true;
+    for(int i = 0; i < n; i++) {
+      for(int j in adj[i]) {
+        if (f[j] > f[i] + c[i][j]) {
+          f[j] = f[i] + c[i][j];
+          stop = false;
+        }
+      }
+    }
+  } while(!stop);
+}
+
+//Dùng queue, cài cách này thì ý tưởng được thể hiện rõ hơn 1 chút.
+int bellmanford_queue() {
+  Deque<int> queue = new LinkedList<>();
+  queue.push(start);
+  while(!queue.empty()) {
+    int i = 
+      queue.poll();
+    for(int j : adj[i]) {
+      if (f[j] > f[i] + c[i][j]) {
+        f[j] = f[i] + c[i][j];
+        queue.push(j);
+      }
+    }
+  }
+  return f[end];    
+}
+  
