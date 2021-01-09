@@ -1,0 +1,42 @@
+# Các kiến thức cơ bản cần nắm
+
+Data structure + algorithms = program
+
+Phần Data structures
+Big O
+Array, String
+Hash table
+Linked list
+Stack
+Queue
+Heap (PriorityQueue)
+Binary Tree
+Graph
+Trie
+
+Phần Algorithms
+Binary search
+Backtracking
+Greedy
+Sort (merge sort, quick sort)
+Divide and Conquer
+Two pointers
+Bit Manipulation
+Depth-first search
+Breadth-first search
+Bellman ford
+Union Find
+Recursion
+Topological sort
+
+Mục tiêu bước đầu cần nắm: 
+ Nắm rõ xem các data structures trong C++ là cái gì.
+Có 1 phong cách code rõ ràng, mạch lạc, thuộc lòng, ăn vào máu với các data structure trên.
+Các giáo trình sẽ học:
+Giải thuật và lập trình (Lê Minh Hoàng)
+Cracking the coding interviews.
+Elements of programming interviews.
+Coderust-hacking-the-coding-interview
+
+Trang luyện code chính: Leetcode.com
+Coderpad: https://coderpad.io/YTGYF6DX
