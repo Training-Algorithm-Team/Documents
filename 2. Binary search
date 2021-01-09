@@ -1,0 +1,34 @@
+Ý tưởng chung của binary search là tìm biên giáp gianh giữa 2 miền giá trị, 1 miền bên phải thỏa mãn điều kiện nào đó, miền bên trái không thỏa mãn. Giờ cần tìm cái điểm giáp gianh.
+Binary search có nhiều biến thể, biến thể phổ biến nhất là search trong trục số thực (không có dãy số tăng dần được cho trước nào cả).
+Ý tưởng với số thực: Search đến khi nào l và r cách nhau 1 khoảng cách vừa đủ eps là được. 
+
+Ý tưởng implement: Maintain 2 biến l và r sao cho sau khi binary search xong, giá trị 2 biến sẽ kề sát nhau. 
+(Nếu là số tự nhiên thì r = l + 1, nếu là số thực thì r - l <= eps...). Sau vòng binary search, sẽ dùng lệnh if để lấy nghiệm.
+/** VD: tinh can bac 2 cua so duong N, return 1 so thuc, do chinh xac 0.001 */
+
+double find(double n) {
+  l = 0, r = n;
+  while(r - l > 0.0001) {
+    double mid = l + (r - l ) / 2;
+    if (mid * mid > n ) {
+      r = mid;
+    } else {
+      l = mid;
+    }
+  }
+  return l;
+}
+/** tính căn bậc 2 với số nguyên dương N */
+int find(int n) {
+  int l = 0, r = n;
+  while(r - l > 1) {
+    int mid = l + (r - l) / 2;
+    if (mid * mid > n) {
+      r = mid;
+    } else {
+      l = mid;
+    }
+  }
+  return l;
+}
+
