@@ -1,0 +1,132 @@
+Điểm chú ý quan trọng nhất: Với những bài toán tìm giá trị lớn nhất mà vẫn thỏa mãn điều kiện nào đó, giá trị lớn hơn sẽ ko thỏa mãn 
+(hoặc tìm giá trị nhỏ nhất vẫn thõa mãn, và các giá trị nhỏ hơn không thỏa mãn nữa) thì hãy nghĩ ngay đến binary search.
+
+1. 1 số câu hỏi cơ bản về BigO
+//Snippe1 O(N^N)
+public static void try(int step) {
+   if (step == n) {
+      return;
+   }
+   for(int i = 0; i < n; i++) {
+    try(step + 1);
+   }
+}
+try(1);
+
+
+//Snippet 2 (O(N*log(N))
+public static void solve(int n) {
+   int l = 0, r = n;
+   while(r - l > 1) {
+      int mid = l + (r - l) / 2;
+
+      boolean check = false;
+      for(int i = 0; i < n; i++) {
+          if (a[i] == mid) {
+             check = true;
+             break;
+          }
+      }    
+     
+      if (check) {
+        l = mid;
+     } else {
+        r = mid;
+     }
+   }
+}
+
+//Snippet 3 (O(N))
+public static void solve(int n) {
+    int i = 0, j = 0;
+    while(j < n) {
+       j++;
+       while(i < j) {
+          i++;
+       }
+    }
+}
+
+2. Cách code chuẩn với binary search trên số thực: Dùng 1 số eps đủ nhỏ.
+public static double findSqrt(int n) {
+   double l = 0, r = n;
+   while(r - l > 0.001) {
+      double mid = l + (r - l) / 2;
+      if (mid * mid > n) {
+        r = mid;
+      } else {
+        l = mid;
+      }
+   }
+   return l;
+}
+3. Bài 1: Có N sợi dây, sợi dây thứ i có độ dài số thực A[i]. Người ta muốn cắt N sợi dây trên ra làm ít nhất K đoạn dây độ dài bằng nhau. Nên nhớ ko được nối các sợi dây vào với nhau.  Hãy tìm độ dài lớn nhất cho K đoạn dây bằng nhau kia.
+Độ chính xác là 0.001.
+
+VD: N = 4,  A = [2, 3, 4, 5], K = 4. Return 2.5
+Giải thích:  Với độ dài cần tìm là 2.5.
+Sợi độ dài 2 cắt được 0 đoạn.
+Sơi độ dài 3 cắt được 1 đoạn.
+Sợi độ dài 4 cắt được 1 đoạn.
+Sơi độ dài  5 cắt được 2 đoạn.
+Tổng là 4 đoạn. 
+
+vector<double> strings;
+int cut(double x) {
+  int count = 0;
+  for (int i = 0; i < strings.size(); ++i) {
+    count += (int) (strings[i] / x);
+  }
+  return count;
+}
+
+void solve(int k) {
+   //double minLen = *min_element(begin(strings), end(strings)); 
+  //double maxLen = *max_element(begin(strings), end(strings));
+  double l = 0.0, r = 2000000000;
+  while (r - l > 0.001) {
+    double mid = l + (r - l) / 2;
+    if (cut(mid) >= k) {
+      l = mid; 
+    } else {
+      r = mid;
+    }
+  }
+  return l;
+}
+4. Bài 2: https://leetcode.com/problems/split-array-largest-sum/?fbclid=IwAR3yhvjjLywN0yQc3etkyspjxGUbDWoYjv6_lh3pOJj7nkXUdb0_l2nY6WQ
+class Solution {
+public:
+  int split(const vector<int> &nums, int x) {
+    int count = 1;
+    int sum = 0;
+    for (int i = 0; i < nums.size(); ++i) {
+      if (sum + nums[i] > x) {
+        count++;
+        sum = nums[i];
+      } else {
+        sum += nums[i]; 
+      }
+    }
+    return count;
+  }
+    int splitArray(vector<int>& nums, int m) {
+        int maxElem = *max_element(nums.begin(), nums.end());
+        int sum = accumulate(nums.begin(), nums.end(), 0);
+        int l = maxElem - l, r = sum;
+        while (r - l > 1) {
+          int mid = l + (r - l) / 2;
+          if (split(nums, mid) > m) {
+            l = mid; 
+          }
+          else {
+            r = mid; 
+          }
+        }
+      return r;
+    }
+};
+
+
+
+
