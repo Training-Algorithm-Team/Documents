@@ -1,0 +1,52 @@
+/*
+
+Design dropbox
+1. User can upload images
+2. Support multiple devices, 1 user can use multiple devices. If 1 device upload images, other devices receive notification and download the new images
+        Analysis
+1.  10M active users
+2.  3-4 devices / user
+3.  20 lan update/download per day
+4.  3 MB / image
+*/
+
+## Database estimation:
+10M * 20 = 200M / 80000 = 20 * 10^7 / 8 * 10^4 = 2.5 * 10^3 = 2500 requests/s
+  + 2500 read requests/s
+  + 2500 write requests/s
+  + 1 request = 2K => 10M * 20 * 2KB * 10^3 = 200 TB / 3 nam
+  
+
+## API design
+Upload(user_id, image);
+  + Day anh day len cloud service. Nhan ve mot duong dan file.
+  + Luu vao 1 bang image nao do duong dan file do.
+  + Goi den API cua Apple de notify cho cac device khac
+  + Bao ket qua cho nguoi dung
+  
+Download(user_id, list_image_id);
+  + Lay cac duong dan anh tuong ung
+  + Tra ve cac duong dan cho client.
+  + Client tu thuc hien viec download
+
+## DB Design
+
+User:
+  + user_id
+  + Name
+  + Age.
+  + apple_id    
+    
+Image:
+  + image_id
+  + user_id: anh cua ai
+  + image_path: vi tri anh tren cloud
+  + creation_time: thoi gian update
+  
+Co the su dung NoSQL:
+  + Do khong co quan he n-n
+  + So luong write kha nhieu (= so luong read)
+=> MongoDb
+
+## High Level Design
+  
