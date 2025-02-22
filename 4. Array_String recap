@@ -1,0 +1,20 @@
+# Các dạng bài liên quan đến array:
+1. Code lại resizable aray bằng fixed size array
+2. Prefix sum
+3. Tìm max, min
+4. Sử dụng two pointers trên sorted array
+5. Cộng, nhân số lớn
+6. Các dạng bài liên quan đến hoán vị
+7. Check duplicate, những bài dynamic programming đơn giản 
+8. Mảng 2 chiều = Ma trận
+	+ Quay ma trận
+	+ In ra spiral order
+9. Tìm subarray, subsequence thỏa mãn điều kiện gì đó (CTDL chính là hash table)
+
+# Các dạng bài liên quan đến string (Những bài dùng string là CTDL chính)
+1. Xâu đối xứng
+2. Revert string, convert từ số sang string
+3. Thêm, sửa, xóa một vài kí tự để biến thành cái gì đó
+4. Tìm longest substring, sequence
+
+Note: Các bài về array thường là câu 1 trong buổi phỏng vấn.
